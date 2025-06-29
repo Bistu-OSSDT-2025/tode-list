@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>待办清单</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body class="happy-theme">
+    <div class="container">
+        <h1>丧丧的待办清单 <span id="mood-emoji"></span></h1>
+        
+        <div class="input-area">
+    <input type="text" id="task-input" placeholder="写点你不想做的事...">
+    <select id="task-type">
+        <option value="normal">普通任务</option>
+        <option value="urgent">紧急任务</option>
+        <option value="slacking">摆烂任务</option>
+    </select>
+    <button id="add-btn" class="animate__animated">躺平式添加</button>
+</div>
+        
+        <div id="quote-display">"不努力一下，怎么知道什么叫绝望"</div>
+        
+        <ul id="task-list"></ul>
+        
+        <div class="stats">
+            <p>剩余任务: <span id="task-count">0</span> 件</p>
+            <p>今日效率: <span id="efficiency">0%</span></p>
+        </div>
+    </div>
+    
+    <audio id="sound-effect" src="https://www.myinstants.com/media/sounds/fart.mp3"></audio>
+    
+    <script src="script.js"></script>
+</body>
+</html>
