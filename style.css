@@ -1,0 +1,471 @@
+:root {
+    --primary: #FF9A76;
+    --primary-light: #FFB996;
+    --secondary: #FFD1D1;
+    --bg: #FFF5EB;
+    --text: #5A4A42;
+    --text-light: #8B7B74;
+    --accent: #FF6B6B;
+    --completed: #D4E2D4;
+    --success: #4CAF50;
+    --status-bg: #FFD1D1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+    padding: 20px;
+    transition: all 0.3s ease;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+h1 {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.sun-emoji {
+    font-size: 1.5em;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(10deg); }
+}
+
+.time-display {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+.emoji {
+    font-size: 1.2em;
+    vertical-align: middle;
+    margin: 0 2px;
+}
+
+.input-area {
+    display: flex;
+    margin-bottom: 25px;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+#taskInput {
+    flex: 1;
+    padding: 15px 20px;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+#addBtn {
+    padding: 0 25px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+#addBtn:hover {
+    background-color: var(--primary-light);
+}
+
+.task-list {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+.task-item {
+    background-color: white;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.task-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.task-item.completed {
+    background-color: var(--completed);
+    border-color: #d0e0d0;
+}
+
+.task-checkbox {
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+
+.task-text {
+    flex: 1;
+    font-size: 1.05rem;
+    word-break: break-word;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: var(--text-light);
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 15px;
+    transition: all 0.2s ease;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.delete-btn:hover {
+    background-color: var(--secondary);
+    color: var(--accent);
+}
+
+.status-area {
+    text-align: center;
+    padding: 15px;
+    background-color: var(--status-bg);
+    border-radius: 12px;
+    margin-bottom: 25px;
+    font-size: 1rem;
+    color: var(--text);
+    transition: all 0.3s ease;
+}
+
+.status-area.success {
+    background-color: var(--success);
+    color: white;
+}
+
+.quote-area {
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.quote-text {
+    font-size: 1.05rem;
+    color: var(--text);
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.refresh-btn {
+    background: none;
+    border: none;
+    color: var(--primary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+.refresh-btn:hover {
+    background-color: var(--secondary);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-light);
+}
+
+.empty-state .emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* 设置面板样式 */
+.settings-panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.settings-btn {
+    background: none;
+    color: var(--primary);
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px;
+}
+
+.settings-btn:hover {
+    transform: rotate(30deg);
+    color: var(--primary-light);
+}
+
+.settings-label {
+    color: var(--primary);
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.settings-menu {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 250px;
+    display: none;
+}
+
+.settings-menu.show {
+    display: block;
+}
+
+.settings-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+
+.settings-group {
+    margin-bottom: 15px;
+}
+
+.settings-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+.color-options {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.color-option {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.color-option.selected {
+    border-color: var(--text);
+    transform: scale(1.1);
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background-color: white;
+    color: var(--text);
+}
+
+#bgImageInput {
+    display: none;
+}
+
+.bg-image-btn {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+    margin-bottom: 5px;
+}
+
+.bg-image-btn:hover {
+    background-color: var(--primary-light);
+}
+
+#resetBtn {
+    background-color: var(--accent);
+}
+
+#resetBtn:hover {
+    background-color: #e05a5a;
+}
+
+#nicknameInput {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+/* 音乐播放器样式 */
+.music-player {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px 15px;
+    border-radius: 50px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.music-player:hover {
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.music-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url('https://s1.music.126.net/style/favicon.ico');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.music-label {
+    font-size: 0.9rem;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+.music-player.playing .music-icon {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .input-area {
+        flex-direction: column;
+        border-radius: 12px;
+    }
+    
+    #taskInput, #addBtn {
+        width: 100%;
+        border-radius: 0;
+    }
+    
+    #addBtn {
+        padding: 12px;
+        justify-content: center;
+    }
+
+    .settings-panel {
+        top: 10px;
+        right: 10px;
+    }
+
+    .music-player {
+        top: 10px;
+        left: 10px;
+        padding: 8px 12px;
+    }
+
+    .music-label {
+        display: none;
+    }
+}

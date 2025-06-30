@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小美的待办清单</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 音乐播放器 -->
+    <div class="music-player" id="musicPlayer">
+        <div class="music-icon"></div>
+        <span class="music-label">今日推荐歌曲</span>
+        <audio id="bgMusic" loop></audio>
+    </div>
+
+    <!-- 设置面板 -->
+    <div class="settings-panel">
+        <span class="settings-label">设置</span>
+        <button class="settings-btn" id="settingsBtn">⚙️</button>
+        <div class="settings-menu" id="settingsMenu">
+            <div class="settings-title">个性化设置</div>
+            
+            <div class="settings-group">
+                <label class="settings-label">你的昵称</label>
+                <input type="text" id="nicknameInput" placeholder="输入你的昵称">
+            </div>
+            
+            <div class="settings-group">
+                <label class="settings-label">主题颜色</label>
+                <div class="color-options">
+                    <div class="color-option selected" style="background-color: #FF9A76;" data-color="primary"></div>
+                    <div class="color-option" style="background-color: #A5D8FF;" data-color="primary"></div>
+                    <div class="color-option" style="background-color: #B5EAEA;" data-color="primary"></div>
+                    <div class="color-option" style="background-color: #FFD5CD;" data-color="primary"></div>
+                    <div class="color-option" style="background-color: #C3AED6;" data-color="primary"></div>
+                </div>
+            </div>
+            
+            <div class="settings-group">
+                <label class="settings-label">语录风格</label>
+                <select id="quoteStyle">
+                    <option value="cute">鼓励语录</option>
+                    <option value="simple">简洁语录</option>
+                    <option value="food">美食语录</option>
+                    <option value="nature">自然语录</option>
+                </select>
+            </div>
+            
+            <div class="settings-group">
+                <label class="settings-label">背景图片</label>
+                <input type="file" id="bgImageInput" accept="image/*">
+                <label for="bgImageInput" class="bg-image-btn">选择背景图片</label>
+                <button id="resetBtn" class="bg-image-btn">恢复默认设置</button>
+            </div>
+            
+            <button id="saveSettingsBtn" class="bg-image-btn" style="margin-top: 15px;">保存设置</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1 id="appTitle"><span class="sun-emoji">☀️</span>小美的待办清单</h1>
+            <div class="time-display" id="timeDisplay"></div>
+        </header>
+
+        <div class="input-area">
+            <input type="text" id="taskInput" placeholder="写下你想做的事...">
+            <button id="addBtn"><span class="emoji">➕</span> 添加</button>
+        </div>
+
+        <div class="status-area" id="statusMessage">
+            <span class="emoji">🌞</span> 今天是个美好的开始！
+        </div>
+
+        <ul class="task-list" id="taskList">
+            <!-- 任务将通过JavaScript动态添加 -->
+        </ul>
+
+        <div class="quote-area">
+            <p class="quote-text" id="quoteText">保持能量，像咖啡一样提神 ☕</p>
+            <button class="refresh-btn" id="refreshQuote">
+                <span class="emoji">🔄</span> 换一句
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
