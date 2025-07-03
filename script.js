@@ -3,7 +3,7 @@ let userSettings = JSON.parse(localStorage.getItem('userSettings')) || {
     primaryColor: '#FF9A76',
     bgColor: '#FFF5EB',
     quoteStyle: 'cute',
-    nickname: '小美',
+    nickname: '我',
     bgImage: null
 };
 
@@ -22,7 +22,6 @@ const quoteStyles = {
         "今日事，今日毕",
         "一步一个脚印",
         "量变引起质变"
-       
     ],
     food: [
         "生活就像巧克力，有苦也有甜 🍫",
@@ -30,7 +29,6 @@ const quoteStyles = {
         "今天的你像甜甜圈一样完美 🍩",
         "保持能量，像咖啡一样提神 ☕",
         "慢慢来，像煮汤一样需要时间 🍲"
-        "生活就像气泡水，偶尔冒的小泡，就是平凡里的甜🍰"
     ],
     nature: [
         "阳光总在风雨后 🌈",
@@ -38,7 +36,6 @@ const quoteStyles = {
         "保持如溪流般的持续前进 💧",
         "如春风般温柔的对待自己 🌬️",
         "像星星一样闪耀自己的光芒 ✨"
-        "任务像种子，埋下的瞬间，成长已开始发芽"
     ]
 };
 
