@@ -1,4 +1,4 @@
-// 用户设置
+
 let userSettings = JSON.parse(localStorage.getItem('userSettings')) || {
     primaryColor: '#FF9A76',
     bgColor: '#FFF5EB',
@@ -7,7 +7,6 @@ let userSettings = JSON.parse(localStorage.getItem('userSettings')) || {
     bgImage: null
 };
 
-// 不同风格的语录库
 const quoteStyles = {
     cute: [
         "每天进步一点点，生活变得更美好 🌸",
@@ -39,22 +38,18 @@ const quoteStyles = {
     ]
 };
 
-// 网易云音乐推荐歌单 (纯音乐)
 const musicList = [
-    { name: "清晨的阳光", url: "https://music.163.com/song/media/outer/url?id=1330348068.mp3" },
-    { name: "雨中的冥想", url: "https://music.163.com/song/media/outer/url?id=1330348069.mp3" },
-    { name: "星空下的钢琴曲", url: "https://music.163.com/song/media/outer/url?id=1330348070.mp3" },
+    { name: "Rising of the Dream", url: "M1.mp3" },
+    { name: "Merry Christmas, Mr Lawrence", url: "M2.mp3" },
+    { name: "风笛", url: "M3.mp3" },
     { name: "午后的小憩", url: "https://music.163.com/song/media/outer/url?id=1330348071.mp3" },
     { name: "夜晚的宁静", url: "https://music.163.com/song/media/outer/url?id=1330348072.mp3" },
     { name: "森林漫步", url: "https://music.163.com/song/media/outer/url?id=1330348073.mp3" },
-    { name: "海边微风", url: "https://music.163.com/song/media/outer/url?id=1330348074.mp3" },
     { name: "山谷回声", url: "https://music.163.com/song/media/outer/url?id=1330348075.mp3" }
 ];
 
-// 完成任务的表情
 const completionEmojis = ["👍", "🎯", "✅", "👏", "💯", "✨", "🌟", "🥳"];
 
-// DOM元素
 const taskInput = document.getElementById('taskInput');
 const addBtn = document.getElementById('addBtn');
 const taskList = document.getElementById('taskList');
@@ -74,10 +69,8 @@ const timeDisplay = document.getElementById('timeDisplay');
 const musicPlayer = document.getElementById('musicPlayer');
 const bgMusic = document.getElementById('bgMusic');
 
-// 初始化任务数组
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-// 页面加载时初始化
 document.addEventListener('DOMContentLoaded', () => {
     loadSettings();
     renderTasks();
@@ -86,13 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTime();
     setInterval(updateTime, 1000);
     
-    // 初始化音乐播放器
     setupMusicPlayer();
 });
 
-// 设置音乐播放器
 function setupMusicPlayer() {
-    // 点击播放/暂停
+
     musicPlayer.addEventListener('click', function() {
         if (bgMusic.paused) {
             playRandomMusic();
@@ -101,23 +92,20 @@ function setupMusicPlayer() {
             musicPlayer.classList.remove('playing');
         }
     });
-    
-    // 音乐结束自动播放下一首
+
     bgMusic.addEventListener('ended', playRandomMusic);
 }
 
-// 播放随机音乐
 function playRandomMusic() {
     const randomMusic = musicList[Math.floor(Math.random() * musicList.length)];
     bgMusic.src = randomMusic.url;
     bgMusic.play()
         .then(() => {
             musicPlayer.classList.add('playing');
-            // 更新标签显示当前播放歌曲
+            
             const label = musicPlayer.querySelector('.music-label');
             label.textContent = `正在播放: ${randomMusic.name}`;
-            
-            // 3秒后恢复默认标签
+         
             setTimeout(() => {
                 if (!bgMusic.paused) {
                     label.textContent = '今日推荐歌曲';
@@ -126,12 +114,11 @@ function playRandomMusic() {
         })
         .catch(error => {
             console.error('播放音乐失败:', error);
-            // 如果播放失败，尝试下一首
+         
             setTimeout(playRandomMusic, 1000);
         });
 }
 
-// 更新时间显示
 function updateTime() {
     const now = new Date();
     const options = { 
@@ -147,7 +134,6 @@ function updateTime() {
     timeDisplay.textContent = now.toLocaleDateString('zh-CN', options);
 }
 
-// 添加任务
 addBtn.addEventListener('click', addTask);
 taskInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
@@ -155,27 +141,22 @@ taskInput.addEventListener('keypress', (e) => {
     }
 });
 
-// 刷新语录
 refreshQuote.addEventListener('click', showRandomQuote);
 
-// 设置按钮点击
 settingsBtn.addEventListener('click', toggleSettingsMenu);
 
-// 颜色选择
 colorOptions.forEach(option => {
     option.addEventListener('click', () => {
-        // 移除同组的所有选中状态
+      
         const group = option.getAttribute('data-color');
         document.querySelectorAll(`.color-option[data-color="${group}"]`).forEach(opt => {
             opt.classList.remove('selected');
         });
-        
-        // 添加选中状态
+      
         option.classList.add('selected');
     });
 });
 
-// 背景图片选择
 bgImageInput.addEventListener('change', function(e) {
     const file = e.target.files[0];
     if (file) {
@@ -188,15 +169,13 @@ bgImageInput.addEventListener('change', function(e) {
     }
 });
 
-// 恢复默认设置
 resetBtn.addEventListener('click', function() {
     userSettings.bgImage = null;
     userSettings.bgColor = '#FFF5EB';
     userSettings.primaryColor = '#FF9A76';
     document.body.style.backgroundImage = 'none';
     document.body.style.backgroundColor = userSettings.bgColor;
-    
-    // 更新颜色选择器
+ 
     document.querySelectorAll('.color-option').forEach(option => {
         option.classList.remove('selected');
         if (option.style.backgroundColor === userSettings.primaryColor && option.getAttribute('data-color') === 'primary') {
@@ -207,12 +186,10 @@ resetBtn.addEventListener('click', function() {
     applySettings();
 });
 
-// 保存设置
 saveSettingsBtn.addEventListener('click', function() {
     userSettings.nickname = nicknameInput.value || '小美';
     userSettings.quoteStyle = quoteStyleSelect.value;
-    
-    // 获取选中的颜色
+   
     const primarySelected = document.querySelector('.color-option.selected[data-color="primary"]');
     
     if (primarySelected) {
@@ -224,32 +201,27 @@ saveSettingsBtn.addEventListener('click', function() {
     toggleSettingsMenu();
 });
 
-// 加载设置
 function loadSettings() {
-    // 更新UI
+
     nicknameInput.value = userSettings.nickname;
     quoteStyleSelect.value = userSettings.quoteStyle;
     
-    // 设置颜色选项
     document.querySelectorAll('.color-option').forEach(option => {
         const group = option.getAttribute('data-color');
         if (group === 'primary' && option.style.backgroundColor === userSettings.primaryColor) {
             option.classList.add('selected');
         }
     });
-    
-    // 应用设置
+
     applySettings();
     updateAppTitle();
 }
 
-// 应用设置
 function applySettings() {
-    // 应用颜色
+
     document.documentElement.style.setProperty('--primary', userSettings.primaryColor);
     document.documentElement.style.setProperty('--bg', userSettings.bgColor);
-    
-    // 计算衍生颜色
+
     const primaryLight = lightenColor(userSettings.primaryColor, 20);
     const secondary = lightenColor(userSettings.primaryColor, 40);
     const accent = darkenColor(userSettings.primaryColor, 10);
@@ -257,15 +229,12 @@ function applySettings() {
     document.documentElement.style.setProperty('--primary-light', primaryLight);
     document.documentElement.style.setProperty('--secondary', secondary);
     document.documentElement.style.setProperty('--accent', accent);
-    
-    // 应用背景图片
+
     applyBgImage();
-    
-    // 更新应用标题
+ 
     updateAppTitle();
 }
 
-// 应用背景图片
 function applyBgImage() {
     if (userSettings.bgImage) {
         document.body.style.backgroundImage = `url(${userSettings.bgImage})`;
@@ -275,22 +244,18 @@ function applyBgImage() {
     }
 }
 
-// 更新应用标题
 function updateAppTitle() {
     appTitle.innerHTML = `<span class="sun-emoji">☀️</span>${userSettings.nickname}的待办清单`;
 }
 
-// 保存设置
 function saveSettings() {
     localStorage.setItem('userSettings', JSON.stringify(userSettings));
 }
 
-// 切换设置菜单
 function toggleSettingsMenu() {
     settingsMenu.classList.toggle('show');
 }
 
-// 添加任务函数
 function addTask() {
     const taskText = taskInput.value.trim();
     if (taskText === '') return;
@@ -310,7 +275,6 @@ function addTask() {
     taskInput.focus();
 }
 
-// 渲染任务列表
 function renderTasks() {
     taskList.innerHTML = '';
     
@@ -336,8 +300,7 @@ function renderTasks() {
         `;
         
         taskList.appendChild(taskItem);
-        
-        // 添加事件监听
+     
         const checkbox = taskItem.querySelector('.task-checkbox');
         const deleteBtn = taskItem.querySelector('.delete-btn');
         
@@ -346,7 +309,6 @@ function renderTasks() {
     });
 }
 
-// 切换任务完成状态
 function toggleTaskComplete(taskId) {
     tasks = tasks.map(task => {
         if (task.id === taskId) {
@@ -360,7 +322,6 @@ function toggleTaskComplete(taskId) {
     updateStatusMessage();
 }
 
-// 删除任务
 function deleteTask(taskId) {
     tasks = tasks.filter(task => task.id !== taskId);
     saveTasks();
@@ -368,12 +329,10 @@ function deleteTask(taskId) {
     updateStatusMessage();
 }
 
-// 保存任务到本地存储
 function saveTasks() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-// 更新状态消息
 function updateStatusMessage() {
     const totalTasks = tasks.length;
     const completedTasks = tasks.filter(task => task.completed).length;
@@ -404,14 +363,12 @@ function updateStatusMessage() {
     statusMessage.classList.remove('success');
 }
 
-// 显示随机语录
 function showRandomQuote() {
     const quotes = quoteStyles[userSettings.quoteStyle] || quoteStyles.cute;
     const randomIndex = Math.floor(Math.random() * quotes.length);
     quoteText.textContent = quotes[randomIndex];
 }
 
-// 颜色处理函数
 function lightenColor(color, percent) {
     const num = parseInt(color.replace("#", ""), 16),
         amt = Math.round(2.55 * percent),
