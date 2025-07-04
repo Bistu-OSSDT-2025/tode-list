@@ -39,9 +39,9 @@ const quoteStyles = {
 };
 
 const musicList = [
-    { name: "Rising of the Dream", url: "M1.mp3" },
-    { name: "Merry Christmas, Mr Lawrence", url: "M2.mp3" },
-    { name: "风笛", url: "M3.mp3" },
+    { name: "Rising of the Dream", url: "song/M1.mp3" },
+    { name: "Merry Christmas, Mr Lawrence", url: "song/M2.mp3" },
+    { name: "风笛", url: "song/M3.mp3" },
     { name: "午后的小憩", url: "https://music.163.com/song/media/outer/url?id=1330348071.mp3" },
     { name: "夜晚的宁静", url: "https://music.163.com/song/media/outer/url?id=1330348072.mp3" },
     { name: "森林漫步", url: "https://music.163.com/song/media/outer/url?id=1330348073.mp3" },
