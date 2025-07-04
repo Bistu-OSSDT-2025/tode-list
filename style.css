@@ -1,4 +1,4 @@
-:root {
+ :root {
     --primary: #FF9A76;
     --primary-light: #FFB996;
     --secondary: #FFD1D1;
@@ -102,7 +102,7 @@ h1 {
     border: none;
     font-size: 1rem;
     outline: none;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.3);
     transition: all 0.3s ease;
 }
 
