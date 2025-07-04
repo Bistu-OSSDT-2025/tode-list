@@ -32,5 +32,3 @@ pie
    git clone https://github.com/Bistu-OSSDT-2025/tode-list.git
    ```
 2. 直接打开 `index.html`
-
-[➡️ 立即体验](https://Bistu-OSSDT-2025.github.io/tode-list/) 
